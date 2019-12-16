@@ -1,0 +1,19 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: KinD (Kubernetes in Docker) Action
+      uses: engineerd/setup-kind@v0.2.0
+    - name: Deliverybot Helm Action
+      uses: deliverybot/helm@v1.4.0
+      with:
+        release: test
+        namespace: actions
+        chart: 'app'  
